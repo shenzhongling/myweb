@@ -15,6 +15,10 @@ class Question(models.Model):
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
+    was_published_recently.admin_order_field = 'pub_date'  # 管理界面添加排序
+    was_published_recently.boolean = True  # 管理界面添加彩色对错图标
+    was_published_recently.short_description = '最近发布'  # 管理界面列标
+
     class meta:
         verbose_name = '问题'
         verbose_name_plural = '问题集'
